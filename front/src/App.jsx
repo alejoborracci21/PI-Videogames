@@ -15,7 +15,7 @@ const App = () => {
   };
 
   return (
-    <div style={styles.contain}>
+    <div>
     <Routes>
     <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
     <Route
@@ -30,13 +30,4 @@ const App = () => {
   );
 };
 
-const styles = {
-  contain: {
-    backgroundColor: '#006633',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    height: '100vh', // 100% del alto de la pantalla
-  },
-}
 export default App;

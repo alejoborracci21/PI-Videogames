@@ -1,37 +1,27 @@
 import React from 'react';
 import { useState } from 'react';
-import axios from 'axios'
 
-const Searchbar = () => {
-    const [id, setId] = useState("");
+const Searchbar = ({onSearch}) => {
+    const [index, setIndex] = useState("");
 
     const handleChange = (event) => {
         const {value} = event.target
         const input = Number(value);
         if(isNaN(input)){
-            window.alert("No es un numero el Id")
+            window.alert("El id debe ser de tipo numerico")
         }else{
-            setId(input);
-        }
-    }
-
-    const onSearch = async(id) => {
-        try {
-            const {data} = await axios(`http://localhost:3001/videogames/${id}`)
-            
-        } catch (error) {
-            console.log(error)
+            setIndex(input);
         }
     }
 
     const handleClick = () => {
-        onSearch(id)
-        setId("");
+        onSearch(index)
+        setIndex("");
     }
     return(
         <>
             <h3 style={styles.text}>Buscar videojuegos por ID</h3> 
-            <input type='search' value={id} onChange={handleChange}/>
+            <input type='search' value={index} onChange={handleChange}/>
             <button  onClick={handleClick}>Search</button>
         </>
     )
