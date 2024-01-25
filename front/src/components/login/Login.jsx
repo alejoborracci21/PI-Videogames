@@ -1,6 +1,6 @@
 // Login.js
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Navigate, useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });

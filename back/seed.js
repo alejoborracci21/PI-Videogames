@@ -1,6 +1,6 @@
 // seed.js
 require('dotenv').config();
-const { Genre, Videogame, conn } = require('./src/db'); // Asegúrate de que la ruta sea correcta
+const { Genre, Videogame, conn } = require('./src/db');
 const axios = require('axios');
 const { API_URL, API_KEY } = process.env;
 
@@ -16,7 +16,7 @@ const fillGenres = async () => {
     const genresToCreate = results.map((genre) => ({
       id: genre.id,
       name: genre.name,
-      juegos: genre.games.map((game) => ({ id: game.id, name: game.name })), // Ajusta aquí
+      juegos: genre.games.map((game) => ({ id: game.id, name: game.name })),
     }));
 
     const createdGenres = await Genre.bulkCreate(genresToCreate, {
