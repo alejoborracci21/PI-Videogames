@@ -24,7 +24,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      defaultValue: 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png',
+      set(value) {
+        // Si se proporciona una imagen, utiliza esa imagen, de lo contrario, usa la predeterminada
+        this.setDataValue('image', value || 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png');
+      },
     },
     rating:{
       type: DataTypes.INTEGER

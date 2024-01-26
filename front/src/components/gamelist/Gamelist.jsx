@@ -6,19 +6,19 @@ const GameList = ({ games }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [addedGameIds, setAddedGameIds] = useState(new Set());
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentGames = games.slice(startIndex, endIndex);
-
-  const totalPages = Math.ceil(games.length / itemsPerPage);
-
-  const handleLoadMore = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   const handleAddGame = (id) => {
     setAddedGameIds((prevIds) => new Set(prevIds).add(id));
   };
+
+  const totalPages = Math.ceil(games.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentGames = games.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -27,6 +27,7 @@ const GameList = ({ games }) => {
           <div key={id} style={styles.cardWrapper}>
             {!addedGameIds.has(id) && (
               <Gamecard
+                key={id}
                 id={id}
                 name={name}
                 image={image}
@@ -37,11 +38,17 @@ const GameList = ({ games }) => {
           </div>
         ))}
       </div>
-      {currentPage < totalPages && (
-        <button onClick={handleLoadMore} style={styles.loadMoreButton}>
-          Load More ({currentPage}/{totalPages})
-        </button>
-      )}
+      <div style={styles.pageContainer}>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            style={index + 1 === currentPage ? { ...styles.pageButton, backgroundColor: 'gray' } : styles.pageButton}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };
@@ -57,12 +64,17 @@ const styles = {
     justifyContent: 'space-between',
   },
   cardWrapper: {
-    width: '30%', // Ajusta el ancho según tus preferencias
+    width: '30%',
     marginBottom: '20px',
   },
-  loadMoreButton: {
+  pageContainer: {
+    display: 'flex',
+    justifyContent: 'center',
     marginTop: '20px',
-    padding: '10px',
+  },
+  pageButton: {
+    padding: '5px 10px',
+    margin: '0 5px',
     fontSize: '1em',
     backgroundColor: '#007bff',
     color: '#fff',

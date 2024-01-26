@@ -1,11 +1,14 @@
 // Gamepage.jsx
 import React from 'react';
+import Genres from '../components/genres/genres';
+
 
 const GenresPage = () => {
   // Tu lógica para la página del videojuego
   return (
     <div>
-      <h1>SOY /genres</h1>
+      <h2>Generos de videojuegos:</h2>
+      
     </div>
   );
 };

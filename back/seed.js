@@ -6,6 +6,9 @@ const { API_URL, API_KEY } = process.env;
 
 const URL = `${API_URL}/genres?${API_KEY}`;
 
+
+//---------------------------------------------------------------------
+//!funcion para agregar los genres a la base de datos
 const fillGenres = async () => {
   try {
     await conn.sync({ force: true });
@@ -33,3 +36,4 @@ const fillGenres = async () => {
 };
 
 fillGenres();
+//---------------------------------------------------------------------------------------

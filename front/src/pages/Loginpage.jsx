@@ -35,7 +35,7 @@ const Login = ({onLogin}) => {
       ) : (
         <div style={styles.container}>
           <div style={styles.formWrapper}>
-            <h2 style={styles.title}>Login</h2>
+            <h3 style={styles.title}>Login</h3>
             <form onSubmit={handleSubmit} style={styles.form}>
               <label style={styles.label}>
                 Email:

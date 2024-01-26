@@ -12,30 +12,35 @@ const router = Router()
 
 
 //!-------------RUTA GET ALL VIDEOGAMES--------------------------------------
-router.get('/', async(req, res) => {
-    //ya trae todos los juegos de la DB y de la api
+router.get('/', async (req, res) => {
     try {
-        const {data} = await axios.get(`${URL}`);
-        const { results } = data
-        
-        const gamesDb = await Videogame.findAll();
-        const gamesApi = results.map((game) => {
-            return{
-                id: game.id,
-                name: game.name,
-                background_image: game.background_image,
-                released: game.released,
-                rating: game.rating,
-                platforms: game.platforms,
-                genres: game.genres
-            }
-        })
-        const response = [...gamesDb, gamesApi ];
-        res.send(response);
+      const { data } = await axios.get(`${URL}`);
+      const { results } = data;
+  
+      const gamesDb = await Videogame.findAll();
+      const gamesApi = results.map((game) => {
+        return {
+          id: game.id,
+          name: game.name,
+          image: game.background_image,
+          released: game.released,
+          rating: game.rating,
+          platforms: game.platforms,
+          genres: game.genres
+        };
+      });
+  
+      // Aplanar el array de juegos de la API
+      const gamesApiFlat = gamesApi.flat();
+  
+      // Combinar los juegos de la base de datos con los de la API
+      const response = [...gamesDb, ...gamesApiFlat];
+      res.send(response);
     } catch (error) {
-        res.status(500).send('Internal Server Error')
+      res.status(500).send('Internal Server Error');
     }
-})
+  });
+  
 
 
 
@@ -61,6 +66,7 @@ router.get('/:idVideogame', async(req, res) => {
 
 
 //!----------------RUTA GET FOR NAME-----------------------------------------
+// URL -> LOCALHOST:3001/VIDEOGAMES/LOL
 router.get('/name', async (req, res) => {
     try {
         const { name } = req.query;
