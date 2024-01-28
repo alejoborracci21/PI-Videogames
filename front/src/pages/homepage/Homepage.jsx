@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../components/navbar/Navbar';
-import Searchbar from '../components/searchbar/Searchbar';
-import GameList from '../components/gamelist/GameList'; // Asegúrate de importar GameList correctamente
-
+import Navbar from '../../components/navbar/Navbar';
+import Searchbar from '../../components/searchbar/Searchbar';
+import GameList from '../../components/gamelist/GameList'; // Asegúrate de importar GameList correctamente
+import './HomePage.css'; // Importa los estilos
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [allGames, setAllGames] = useState([]);
@@ -46,25 +46,14 @@ const HomePage = () => {
   }, []); // El array de dependencias está vacío para que se ejecute solo una vez al montar el componente
 
   return (
-    <div style={styles.container}>
-      <div>
+    <div className="container">
+      <div className="content">
         <Searchbar onSearch={onSearch} />
         <Navbar />
-        {/* Usa allGames en lugar de games */}
+        <h1 className="heading">Videojuegos:</h1>
         <GameList games={allGames} />
       </div>
     </div>
   );
 };
-
-const styles = {
-  container: {
-    backgroundImage: 'url("https://img.freepik.com/vector-gratis/hexagono-fondo-abstracto-textura-negra_206725-413.jpg")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    height: '100vh',
-  },
-};
-
 export default HomePage;

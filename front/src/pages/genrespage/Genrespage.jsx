@@ -1,6 +1,6 @@
 // Gamepage.jsx
 import React from 'react';
-import Genres from '../components/genres/genres';
+import Genres from '../../components/genres/genres';
 
 
 const GenresPage = () => {

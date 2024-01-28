@@ -1,0 +1,41 @@
+/* HomePageStyles.css */
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url("https://images2.alphacoders.com/132/1325519.jpg");
+      background-size: 100% 100%; /* Ajusta según tus preferencias */
+  background-position: top; /* Otra opción puede ser 'center' */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ajusta a min-height */
+  }
+  
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0; /* Asegúrate de que no haya márgenes aplicados aquí */
+  }
+  
+  .heading {
+    color: #fff;
+    font-size: 1.5em;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border-radius: 5px;
+    user-select: none;
+    margin: 0;
+    display: inline-block;
+  }
+  

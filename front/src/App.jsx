@@ -1,10 +1,10 @@
 // App.js
 import React, { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import LoginPage from './pages/Loginpage';
-import HomePage from './pages/Homepage';
-import GamePage from './pages/Gamepage';
-import GenresPage from './pages/Genrespage';
+import LoginPage from '../src/pages/loginpage/Loginpage'
+import HomePage from '../src/pages/homepage/Homepage';
+import GamePage from '../src/pages/gamepage/Gamepage';
+import GenresPage from '../src/pages/genrespage/Genrespage';
 
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
