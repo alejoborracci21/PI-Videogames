@@ -1,8 +1,10 @@
+// GameList.jsx
 import React, { useState } from 'react';
-import Gamecard from '../gamecard/gamecard';
+import Gamecard from '../gamecard/Gamecard';
+import './GameList.css';
 
 const GameList = ({ games }) => {
-  const itemsPerPage = 6; // Número de juegos por página
+  const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [addedGameIds, setAddedGameIds] = useState(new Set());
 
@@ -22,9 +24,9 @@ const GameList = ({ games }) => {
 
   return (
     <div>
-      <div style={styles.cardContainer}>
-        {currentGames.map(({ id, name, image, rating }) => (
-          <div key={id} style={styles.cardWrapper}>
+      <div className="cardContainer">
+        {currentGames.map(({ id, name, image, rating, genres }) => (
+          <div key={id} className="cardWrapper">
             {!addedGameIds.has(id) && (
               <Gamecard
                 key={id}
@@ -32,17 +34,20 @@ const GameList = ({ games }) => {
                 name={name}
                 image={image}
                 rating={rating}
+                generos={genres}
                 onAdd={() => handleAddGame(id)}
               />
             )}
           </div>
         ))}
       </div>
-      <div style={styles.pageContainer}>
+      <div className="pageContainer">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
-            style={index + 1 === currentPage ? { ...styles.pageButton, backgroundColor: 'gray' } : styles.pageButton}
+            className={
+              index + 1 === currentPage ? 'pageButton active' : 'pageButton'
+            }
             onClick={() => handlePageChange(index + 1)}
           >
             {index + 1}
@@ -51,37 +56,6 @@ const GameList = ({ games }) => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    backgroundColor: 'white',
-    padding: '20px',
-  },
-  cardContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-  },
-  cardWrapper: {
-    width: '30%',
-    marginBottom: '20px',
-  },
-  pageContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: '20px',
-  },
-  pageButton: {
-    padding: '5px 10px',
-    margin: '0 5px',
-    fontSize: '1em',
-    backgroundColor: '#007bff',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
 };
 
 export default GameList;

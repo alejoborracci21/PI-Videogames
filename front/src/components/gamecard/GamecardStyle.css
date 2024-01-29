@@ -1,0 +1,64 @@
+/* GamecardStyles.css */
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 240px; /* Ajusta el ancho de la tarjeta */
+  height: 550px; /* Ajusta la altura de la tarjeta */
+  margin: 16px;
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.details {
+  padding: 16px;
+}
+
+.name,
+.rating {
+  margin: 0 0 8px 0;
+}
+
+.name {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.rating {
+  font-size: 0.9em;
+  color: #888;
+}
+
+.genres {
+  margin-top: 10px;
+}
+
+.genres strong {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.genres ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.genres li {
+  margin-bottom: 5px;
+}

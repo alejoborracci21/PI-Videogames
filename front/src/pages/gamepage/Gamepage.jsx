@@ -1,13 +1,20 @@
-// Gamepage.jsx
+// GamePage.jsx
 import React from 'react';
-
+import { useParams } from 'react-router-dom';
+import Navbar from '../../components/navbar/Navbar';
 const GamePage = () => {
-  // Tu lógica para la página del videojuego
+  // Obtén el parámetro de la URL para el ID del juego
+  const { gameId } = useParams();
+
+  // Lógica para cargar detalles del juego con el ID gameId
+  // Puedes usar este gameId para hacer una solicitud a tu API y obtener detalles específicos del juego
+
   return (
     <div>
-      <h1>SOY /games</h1>
+      <Navbar/>
+      <h1>Detalles del juego con ID: {gameId}</h1>
     </div>
   );
 };
 
-export default GamePage;  // Exportar el componente como exportación predeterminada
+export default GamePage;

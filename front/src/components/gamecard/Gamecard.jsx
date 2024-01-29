@@ -1,45 +1,29 @@
-import React from "react";
+// Gamecard.jsx
 
-const Gamecard = ({ name, image, rating }) => {
+import React from "react";
+import { Link } from "react-router-dom";
+import "./GamecardStyle.css";
+
+const Gamecard = ({ id, name, image, rating, generos }) => {
   return (
-    <div style={styles.card}>
-      <img style={styles.image} src={image} alt="Not Found" />
-      <div style={styles.details}>
-        <h2 style={styles.name}>{name}</h2>
-        <p style={styles.rating}>Rating: {rating}</p>
-      </div>
+    <div id={id} className="card">
+      <Link to={`/detail/${id}`} style={{ textDecoration: 'none' }}>
+        <img className="image" src={image} alt="Not Found" />
+        <div className="details">
+          <h2 className="name">{name}</h2>
+          <p className="rating">Rating: {rating}</p>
+          <div className="genres">
+            <strong>Generos:</strong>
+            <ul>
+            {generos && generos.map((genero) => (
+  <li key={genero.id}>{genero.name}</li>
+))}
+            </ul>
+          </div>
+        </div>
+      </Link>
     </div>
   );
-};
-
-const styles = {
-  card: {
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    overflow: "hidden",
-    width: "200px",
-    margin: "16px",
-    backgroundColor: "#fff", // Fondo blanco para que no se mezcle con el fondo de HomePage
-  },
-  image: {
-    width: "100%",
-    height: "auto",
-    borderTopLeftRadius: "8px",
-    borderTopRightRadius: "8px",
-  },
-  details: {
-    padding: "16px",
-  },
-  name: {
-    fontSize: "1.2em",
-    margin: "0 0 8px 0",
-  },
-  rating: {
-    fontSize: "0.9em",
-    color: "#888",
-    margin: "0",
-  },
 };
 
 export default Gamecard;

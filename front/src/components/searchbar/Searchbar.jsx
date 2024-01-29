@@ -1,37 +1,46 @@
-import React from 'react';
-import { useState } from 'react';
+// Searchbar.jsx
+import React, { useState } from 'react';
+import './SearchbarStyles.css';
 
-const Searchbar = ({onSearch}) => {
-    const [index, setIndex] = useState("");
+const Searchbar = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-    const handleChange = (event) => {
-        const {value} = event.target
-        const input = Number(value);
-        if(isNaN(input)){
-            window.alert("El id debe ser de tipo numerico")
-        }else{
-            setIndex(input);
-        }
+  const handleChange = (event) => {
+    const { value } = event.target;
+    setSearchTerm(value);
+    setErrorMessage('');
+  };
+
+  const handleClick = () => {
+    if (searchTerm.trim() !== '') {
+      onSearch(searchTerm.trim());
+      setSearchTerm('');
+    } else {
+      setErrorMessage('Ingresa un nombre válido');
     }
+  };
 
-    const handleClick = () => {
-        onSearch(index)
-        setIndex("");
-    }
-    return(
-        <>
-            <h3 style={styles.text}>Buscar videojuegos por ID</h3> 
-            <input type='search' value={index} onChange={handleChange}/>
-            <button  onClick={handleClick}>Search</button>
-        </>
-    )
-
-    
-}
-const styles = {
-        text:{
-            color: 'white',
-        }
-    }
+  return (
+    <div className="searchbar-container">
+      <h3>Buscar videojuegos por nombre:</h3>
+      <input
+        type='text'
+        value={searchTerm}
+        onChange={handleChange}
+        className="search-input"
+      />
+      <button
+        onClick={handleClick}
+        className="search-button"
+      >
+        Search
+      </button>
+      {errorMessage && (
+        <p className="error-message">{errorMessage}</p>
+      )}
+    </div>
+  );
+};
 
 export default Searchbar;

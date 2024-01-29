@@ -1,0 +1,39 @@
+/* SearchbarStyles.css */
+
+.searchbar-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.search-button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 0.8em;
+  margin-top: 5px;
+}
+
+/* Ajuste de margen superior para el h3 */
+h3 {
+  margin-top: 100px; /* Ajusta según sea necesario */
+}

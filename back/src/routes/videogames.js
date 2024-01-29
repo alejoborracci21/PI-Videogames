@@ -3,6 +3,7 @@ const {API_KEY, API_URL} = process.env;
 const  axios  = require('axios')
 const {Router} = require('express')
 const { Videogame } = require('../db');
+const { Op } = require('sequelize');
 const URL = `${API_URL}/games?${API_KEY}`
 
 
@@ -25,7 +26,7 @@ router.get('/', async (req, res) => {
           image: game.background_image,
           released: game.released,
           rating: game.rating,
-          platforms: game.platforms,
+        //   platforms: game.platforms,
           genres: game.genres
         };
       });
@@ -89,19 +90,16 @@ router.get('/name', async (req, res) => {
         const { data } = await axios.get(`${API_URL}/games?${API_KEY}&search=${name}`);
         const apiResults = data.results;
 
-        const response = [...dbResults, ...apiResults];
-
-        if (response.length === 0) {
+        if (dbResults.length === 0 && apiResults.length === 0) {
             return res.status(404).send({ message: 'No se encontraron resultados para la búsqueda.' });
         }
 
-        res.send(response);
+        res.send({ dbResults, apiResults });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error interno del servidor.' });
     }
 });
-
 //!-------------------RUTA POST VIDEOGAME------------------------------------------------
 router.post('/', async (req, res) => {
 //Ruta post ya crea el videojuego en la base de datos
