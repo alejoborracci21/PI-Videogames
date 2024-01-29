@@ -1,0 +1,19 @@
+
+/* Estilo para evitar que el formulario se oculte detrás de la barra de navegación */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegurar que el contenido comience después de la barra de navegación */
+.navbar {
+  height: 60px; /* Ajusta según la altura de tu barra de navegación */
+}
+
+.create-game-container {
+  margin-top: 60px; /* Ajusta según la altura de tu barra de navegación */
+}
+
+/* Resto de tus estilos aquí */
+
+/* ... */

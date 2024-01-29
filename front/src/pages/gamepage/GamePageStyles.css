@@ -1,0 +1,32 @@
+/* GamePageStyles.css */
+
+/* Estilos generales para el contenedor de la página */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Estilos para el contenedor principal que envuelve a Navbar y Detail */
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilos para Navbar */
+  .navbar {
+    background-color: #333; /* Puedes ajustar el color de fondo según tu diseño */
+    color: white;
+    padding: 10px;
+  }
+  
+  /* Estilos para Detail */
+  .detail {
+    padding: 20px;
+    margin-top: 20px; /* Ajusta el margen superior según sea necesario para evitar la superposición con Navbar */
+    background-color: #f8f8f8; /* Puedes ajustar el color de fondo según tu diseño */
+    border: 1px solid #ccc; /* Puedes ajustar el estilo del borde según tu diseño */
+    border-radius: 8px; /* Puedes ajustar la borda según tu diseño */
+  }
+  
+  /* Asegúrate de importar esta hoja de estilos en tu componente GamePage.jsx */
+  

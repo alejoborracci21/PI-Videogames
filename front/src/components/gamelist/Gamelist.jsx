@@ -21,18 +21,19 @@ const GameList = ({ games }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentGames = games.slice(startIndex, endIndex);
+  console.log(currentGames)
 
   return (
     <div>
       <div className="cardContainer">
-        {currentGames.map(({ id, name, image, rating, genres }) => (
+        {currentGames.map(({ id, name, background_image, rating, genres }) => (
           <div key={id} className="cardWrapper">
             {!addedGameIds.has(id) && (
               <Gamecard
                 key={id}
                 id={id}
                 name={name}
-                image={image}
+                background_image={background_image}
                 rating={rating}
                 generos={genres}
                 onAdd={() => handleAddGame(id)}

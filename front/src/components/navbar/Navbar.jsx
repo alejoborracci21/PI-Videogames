@@ -13,7 +13,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li className="navItem">
-          <Link to="/about" className="navLink">
+          <Link to="/create" className="navLink">
             Crear videojuego
           </Link>
         </li>

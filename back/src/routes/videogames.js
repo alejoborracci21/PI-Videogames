@@ -23,10 +23,9 @@ router.get('/', async (req, res) => {
         return {
           id: game.id,
           name: game.name,
-          image: game.background_image,
+          background_image: game.background_image,
           released: game.released,
           rating: game.rating,
-        //   platforms: game.platforms,
           genres: game.genres
         };
       });
@@ -46,24 +45,36 @@ router.get('/', async (req, res) => {
 
 
 //!------------------------RUTA GET VIDEOGAME ID------------------------------
-router.get('/:idVideogame', async(req, res) => {
+router.get('/:idVideogame', async (req, res) => {
     try {
-        //debe traer el detalle de un videojuego especifico
-        //el videojuego es recibido por parametro id
-        //debe incluir los datos del genero
-        //debe funcionar tanto para los juegos de la api como para los de la DB
-        // https://api.rawg.io/api/games/3498?key=6b708e85163f4d7faa6ddccd3381916b
-        const { idVideogame } = req.params;
-        const URLID = `${API_URL}/games/${idVideogame}?${API_KEY}`
-
-        const {data} = await axios.get(`${URLID}`)
-
+      const { idVideogame } = req.params;
+      const URLID = `${API_URL}/games/${idVideogame}?${API_KEY}`;
+  
+      try {
+        // Intentar obtener detalles del juego desde la API Rawg
+        const { data } = await axios.get(`${URLID}`);
         res.send(data);
+      } catch (apiError) {
+        // Si hay un error al obtener detalles desde la API Rawg
+        if (apiError.response && apiError.response.status === 404) {
+          // Intentar buscar en la base de datos local
+          const dbGame = await Videogame.findByPk(idVideogame);
+          if (dbGame) {
+            // Si se encuentra en la base de datos, enviar esos detalles
+            res.send(dbGame);
+          } else {
+            // Si no se encuentra en la base de datos, entonces sí, enviar el 404
+            res.status(404).send({ detail: 'Not found.' });
+          }
+        } else {
+          // Si el error no es un 404, reenviar el error
+          throw apiError;
+        }
+      }
     } catch (error) {
-        res.status(500).send('Internal Server Error')
+      res.status(500).send('Internal Server Error');
     }
-})
-
+  });
 
 
 //!----------------RUTA GET FOR NAME-----------------------------------------
@@ -102,28 +113,34 @@ router.get('/name', async (req, res) => {
 });
 //!-------------------RUTA POST VIDEOGAME------------------------------------------------
 router.post('/', async (req, res) => {
-//Ruta post ya crea el videojuego en la base de datos
-    try {
+  try {
+    const { name, description, released, background_image, rating, genres } = req.body;
 
-        // Recibirá los datos necesarios para crear un videojuego y relacionarlos con los géneros solicitados.
-        // Toda la información debe ser recibida por el body.
-        // Debe crear un videojuego en la base de datos y este debe estar relacionado con sus géneros indicados.
-        const { name, description, released, image, rating } = req.body;
-//------------------------------------------------------------------------
-// Función para crear videojuego
+    // Crear el videojuego en la base de datos
+    const nuevoVideogame = await Videogame.create({
+      name: name,
+      description: description,
+      released: released,
+      background_image: background_image || 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png',
+      rating: rating,
+      gameGenres: genres, // Cambia a 'gameGenres' o el alias que hayas utilizado
+    });
 
-
-        const nuevoVideogame = await Videogame.create({
-            name: `${name}`,
-            description: `${description}`,
-            released: `${released}`,
-            image: `${image}`,
-            rating: `${rating}`,
-        });
-        res.send(`Nuevo Videojuego creado: ${name}`);
-    } catch (error) {
-        res.status(500).send('Internal Server Error');
+    // Relacionar el videojuego con los géneros
+    if (genres && genres.length > 0) {
+      const genresInstances = await Genre.findAll({
+        where: {
+          id: genres,
+        },
+      });
+      await nuevoVideogame.setGenres(genresInstances);
     }
+
+    res.send(`Nuevo Videojuego creado: ${name}`);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 

@@ -47,7 +47,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Product.hasMany(Reviews);
 const { Videogame, Genre } = sequelize.models;
 // Definir relaciones aquí
-Videogame.belongsToMany(Genre, { through: 'videogamegenremodel' });
+Videogame.belongsToMany(Genre, {
+  through: 'videogamegenremodel',
+  as: 'gameGenres', // Cambia el alias a 'gameGenres' o cualquier otro nombre único
+});
 Genre.belongsToMany(Videogame, { through: 'videogamegenremodel' });
 
 module.exports = {

@@ -4,7 +4,8 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from '../src/pages/loginpage/Loginpage'
 import HomePage from '../src/pages/homepage/Homepage';
 import GamePage from '../src/pages/gamepage/Gamepage';
-
+import Detail from './components/detail/Detail';
+import CreateGamePage from './pages/creategamepage/CreategamePage';
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -21,7 +22,10 @@ const App = () => {
       path="/home"
       element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />}
     />
-    <Route path="/detail/:id" element={<GamePage />} />
+    <Route path='/create' element={<CreateGamePage/>}/>
+    <Route path="/detail" element={<GamePage />}>
+      <Route path=':id' element={<Detail/>}></Route>
+    </Route>
     <Route path="*" element={<Navigate to="/login" />} />
   </Routes>
   </div>

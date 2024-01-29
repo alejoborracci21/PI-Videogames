@@ -11,28 +11,34 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false,
     },
-    name: { // COMPLETE 
+    name: { 
       type: DataTypes.STRING,
       allowNull: false,
       unique: true
     },
     description: { 
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     released:{ 
       type: DataTypes.STRING,
+      allowNull: false
     },
-    image: {
+    background_image: {
       type: DataTypes.STRING,
       defaultValue: 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png',
       set(value) {
         // Si se proporciona una imagen, utiliza esa imagen, de lo contrario, usa la predeterminada
-        this.setDataValue('image', value || 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png');
+        this.setDataValue('background_image', value || 'https://i.pinimg.com/originals/1d/2f/7a/1d2f7a9c6fb224ca63c8b79f4f055861.png');
       },
     },
     rating:{
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }, genres: {
+      type: DataTypes.JSONB, // Puedes usar JSON si tu base de datos lo soporta
+      allowNull: false,
+      defaultValue: [], // Puedes inicializarlo con un array vacío si lo deseas
     },
   },{timestamps: false,
     createdAt: 'creado',

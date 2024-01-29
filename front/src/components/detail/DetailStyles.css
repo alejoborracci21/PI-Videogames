@@ -1,0 +1,46 @@
+/* DetailStyles.css */
+
+.detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .detail-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Ajuste para que la imagen no se corte y se adapte al contenedor */
+    margin-bottom: 20px;
+  }
+  
+  .detail-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .detail-rating {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+  }
+  
+  .detail-genres, .detail-platforms {
+    margin-bottom: 15px;
+  }
+  
+  .detail-genres span, .detail-platforms span {
+    margin-right: 10px;
+  }
+  
+  .detail-description {
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .detail-website {
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  /* Add more styles as needed */
+  

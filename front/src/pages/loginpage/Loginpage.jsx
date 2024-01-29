@@ -15,10 +15,9 @@ const Login = ({onLogin}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const isValid = true; // Tu lógica de verificación de credenciales
+    const isValid = true; //logica de verificación de credenciales
 
     if (isValid) {
-      console.log('Redirigiendo a /home');
       onLogin();
       setLoggedIn(true);
     } else {

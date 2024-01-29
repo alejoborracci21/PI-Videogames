@@ -1,0 +1,50 @@
+/* createstyles.css */
+
+.create-game-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.create-game-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.create-game-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.checkbox-label {
+  flex: 1 0 25%;
+  margin-bottom: 8px;
+}
+
+.form-submit-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
