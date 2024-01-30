@@ -15,6 +15,7 @@ const HomePage = () => {
 
       if (data.length > 0) {
         setGames(data);
+        console.log(games)
       } else {
         window.alert('No se encontraron juegos con ese nombre.');
       }

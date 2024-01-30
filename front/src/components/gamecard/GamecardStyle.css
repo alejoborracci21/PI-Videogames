@@ -8,7 +8,7 @@
   width: 240px; /* Ajusta el ancho de la tarjeta */
   height: 550px; /* Ajusta la altura de la tarjeta */
   margin: 16px;
-  background-color: #fff;
+  background-color: #f2f2f2; /* Fondo gris */
   transition: transform 0.2s;
 }
 

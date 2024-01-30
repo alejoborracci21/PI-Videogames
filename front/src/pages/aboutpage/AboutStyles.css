@@ -1,0 +1,59 @@
+/* Estilos para el contenedor del componente About Me */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  /* Estilos para el nombre */
+  .about-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilos para la imagen de perfil */
+  .profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la descripción personal */
+  .about-container p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para la sección de redes sociales */
+  .social-media {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para los iconos de redes sociales */
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  /* Añade un poco de estilo adicional para los enlaces */
+  .social-media a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .social-media a:hover {
+    color: #007bff; /* Cambia el color al pasar el mouse */
+  }
+  

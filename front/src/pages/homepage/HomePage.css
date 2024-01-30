@@ -6,10 +6,9 @@
   left: 0;
   width: 100%;
   padding: 10px;
-  background-color: #333;
   z-index: 1000;
   display: flex;
-  justify-content: space-between; /* Alinea los elementos a los extremos */
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -20,7 +19,19 @@
 }
 
 .home-navItem {
-  margin-right: 20px; /* Espacio entre los elementos */
+  margin-right: 20px;
+}
+
+/* Cambiado el selector para incluir el fondo oscuro */
+.home-container {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #fff; /* Texto en color blanco para mayor contraste */
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.home-heading {
+  color: #fff;
 }
 
 .home-navLink {
