@@ -16,6 +16,7 @@ const Searchbar = ({ onSearch }) => {
     if (searchTerm.trim() !== '') {
       onSearch(searchTerm.trim());
       setSearchTerm('');
+      console.log(searchTerm)
     } else {
       setErrorMessage('Ingresa un nombre válido');
     }

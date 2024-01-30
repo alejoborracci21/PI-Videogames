@@ -6,6 +6,7 @@ import HomePage from '../src/pages/homepage/Homepage';
 import GamePage from '../src/pages/gamepage/Gamepage';
 import Detail from './components/detail/Detail';
 import CreateGamePage from './pages/creategamepage/CreategamePage';
+import About from './pages/aboutpage/About';
 const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
@@ -24,8 +25,10 @@ const App = () => {
     />
     <Route path='/create' element={<CreateGamePage/>}/>
     <Route path="/detail" element={<GamePage />}>
-      <Route path=':id' element={<Detail/>}></Route>
+      <Route path=':id' element={<Detail/>}> 
     </Route>
+    </Route>
+    <Route path='/about' element={<About/>}/>
     <Route path="*" element={<Navigate to="/login" />} />
   </Routes>
   </div>

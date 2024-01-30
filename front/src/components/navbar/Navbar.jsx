@@ -22,7 +22,6 @@ const Navbar = () => {
             About me
           </Link>
         </li>
-        {/* Agrega más elementos según sea necesario */}
       </ul>
     </nav>
   );
