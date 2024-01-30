@@ -21,8 +21,6 @@ const GameList = ({ games }) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentGames = games.slice(startIndex, endIndex);
-  console.log(currentGames)
-
   return (
     <div>
       <div className="cardContainer">

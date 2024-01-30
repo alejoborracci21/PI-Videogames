@@ -2,7 +2,7 @@ require('dotenv').config()
 const {API_KEY, API_URL} = process.env;
 const  axios  = require('axios')
 const {Router} = require('express')
-const { Videogame } = require('../db');
+const { Videogame, Genre } = require('../db');
 const { Op } = require('sequelize');
 const URL = `${API_URL}/games?${API_KEY}`
 

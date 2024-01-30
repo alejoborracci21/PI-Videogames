@@ -35,11 +35,12 @@ module.exports = (sequelize) => {
     rating:{
       type: DataTypes.INTEGER,
       allowNull: false
-    }, genres: {
-      type: DataTypes.JSONB, // Puedes usar JSON si tu base de datos lo soporta
-      allowNull: false,
-      defaultValue: [], // Puedes inicializarlo con un array vacío si lo deseas
     },
+    generos:{
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
+      defaultValue: []
+    }
   },{timestamps: false,
     createdAt: 'creado',
     updatedAt: false
