@@ -1,1 +1,1 @@
-SELECT * FROM genres;
+SELECT * FROM videogames WHERE name ILIKE 'Alejo';

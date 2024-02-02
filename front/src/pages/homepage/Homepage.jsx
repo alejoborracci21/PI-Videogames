@@ -11,8 +11,9 @@ const HomePage = () => {
 
   const onSearch = async (searchTerm) => {
     try {
-      const { data } = await axios(`http://localhost:3001/videogames/${searchTerm}`);
 
+      const { data } = await axios(`http://localhost:3001/videogames/name?name=${searchTerm}`);
+      console.log(data)
       if (data.length > 0) {
         setGames(data);
         console.log(games)
@@ -20,7 +21,7 @@ const HomePage = () => {
         window.alert('No se encontraron juegos con ese nombre.');
       }
     } catch (error) {
-      console.error('Error al realizar la búsqueda', error);
+      console.log(error)
     }
   };
 

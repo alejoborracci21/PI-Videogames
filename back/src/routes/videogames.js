@@ -45,40 +45,40 @@ router.get('/', async (req, res) => {
 
 
 //!------------------------RUTA GET VIDEOGAME ID------------------------------
-router.get('/:idVideogame', async (req, res) => {
-    try {
-      const { idVideogame } = req.params;
-      const URLID = `${API_URL}/games/${idVideogame}?${API_KEY}`;
+// router.get('/:idVideogame', async (req, res) => {
+//     try {
+//       const { idVideogame } = req.params;
+//       const URLID = `${API_URL}/games/${idVideogame}?${API_KEY}`;
   
-      try {
-        // Intentar obtener detalles del juego desde la API Rawg
-        const { data } = await axios.get(`${URLID}`);
-        res.send(data);
-      } catch (apiError) {
-        // Si hay un error al obtener detalles desde la API Rawg
-        if (apiError.response && apiError.response.status === 404) {
-          // Intentar buscar en la base de datos local
-          const dbGame = await Videogame.findByPk(idVideogame);
-          if (dbGame) {
-            // Si se encuentra en la base de datos, enviar esos detalles
-            res.send(dbGame);
-          } else {
-            // Si no se encuentra en la base de datos, entonces sí, enviar el 404
-            res.status(404).send({ detail: 'Not found.' });
-          }
-        } else {
-          // Si el error no es un 404, reenviar el error
-          throw apiError;
-        }
-      }
-    } catch (error) {
-      res.status(500).send('Internal Server Error');
-    }
-  });
+//       try {
+//         // Intentar obtener detalles del juego desde la API Rawg
+//         const { data } = await axios.get(`${URLID}`);
+//         res.send(data);
+//       } catch (apiError) {
+//         // Si hay un error al obtener detalles desde la API Rawg
+//         if (apiError.response && apiError.response.status === 404) {
+//           // Intentar buscar en la base de datos local
+//           const dbGame = await Videogame.findByPk(idVideogame);
+//           if (dbGame) {
+//             // Si se encuentra en la base de datos, enviar esos detalles
+//             res.send(dbGame);
+//           } else {
+//             // Si no se encuentra en la base de datos, entonces sí, enviar el 404
+//             res.status(404).send({ detail: 'Not found.' });
+//           }
+//         } else {
+//           // Si el error no es un 404, reenviar el error
+//           throw apiError;
+//         }
+//       }
+//     } catch (error) {
+//       res.status(500).send('Internal Server Error');
+//     }
+//   });
 
 
 //!----------------RUTA GET FOR NAME-----------------------------------------
-// URL -> LOCALHOST:3001/VIDEOGAMES/LOL
+// URL -> http://localhost:3001/videogames/name?name=asdasd
 router.get('/name', async (req, res) => {
     try {
         const { name } = req.query;
@@ -89,13 +89,14 @@ router.get('/name', async (req, res) => {
         }
 
         // Buscar en la base de datos por nombre
-        const dbResults = await Videogame.findAll({
-            where: {
-                name: {
-                    [Op.iLike]: `%${name}%`, // Consulta de búsqueda insensible a mayúsculas y minúsculas
-                },
+      const dbResults = await Videogame.findAll({
+        where: {
+            name: {
+                [Op.like]: `%${name}%`, // Consulta de búsqueda insensible a mayúsculas y minúsculas
             },
-        });
+        },
+    });
+        
 
         // Buscar en la API por nombre
         const { data } = await axios.get(`${API_URL}/games?${API_KEY}&search=${name}`);
@@ -104,11 +105,11 @@ router.get('/name', async (req, res) => {
         if (dbResults.length === 0 && apiResults.length === 0) {
             return res.status(404).send({ message: 'No se encontraron resultados para la búsqueda.' });
         }
-
-        res.send({ dbResults, apiResults });
+        console.log(dbResults)
+        res.send([ ...dbResults, ...apiResults] );
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error interno del servidor.' });
+      console.error('Error en la ruta de búsqueda:', error);
+      res.status(500).json({ error: 'Hubo un error en la búsqueda de videojuegos.' });
     }
 });
 //!-------------------RUTA POST VIDEOGAME------------------------------------------------
